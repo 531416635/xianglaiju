@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.yao.dao.LoginDao">
+	<!--根据邮箱地址查询用户名信息 -->
+	<select id="findUserByEmail" parameterType="string" resultType="com.yao.model.UserModel">
+		select
+		id,username,password,usertype,userphoto,email,phone,roleId,regtime,userstatus,activecode
+		from userinfo where email = #{email}
+	</select>
+	
+	<!--保存注册用户信息 -->
+	<select id="saveRegUser" parameterType="com.yao.model.UserModel"  statementType="CALLABLE" resultType="string">
+		select saveRegUser(
+		#{username, mode=IN, jdbcType=VARCHAR},
+		#{password, mode=IN, jdbcType=VARCHAR},
+		#{usertype, mode=IN, jdbcType=INTEGER},
+		#{userphoto, mode=IN, jdbcType=VARCHAR},
+		#{email, mode=IN, jdbcType=VARCHAR},
+		#{phone, mode=IN, jdbcType=VARCHAR},
+		#{roleid, mode=IN, jdbcType=INTEGER},
+		#{regtime, mode=IN, jdbcType=TIMESTAMP},
+		#{userstatus, mode=IN, jdbcType=INTEGER},
+		#{activestatus, mode=IN, jdbcType=INTEGER},
+		#{activecode, mode=IN, jdbcType=VARCHAR});
+	</select>
+	
+	<!--保存注册用户信息 -->
+	<select id="regUser" parameterType="com.yao.model.UserModel"  statementType="CALLABLE" resultType="int">
+		select regUser(
+		#{username, mode=IN, jdbcType=VARCHAR},
+		#{password, mode=IN, jdbcType=VARCHAR},
+		#{usertype, mode=IN, jdbcType=INTEGER},
+		#{userphoto, mode=IN, jdbcType=VARCHAR},
+		#{email, mode=IN, jdbcType=VARCHAR},
+		#{phone, mode=IN, jdbcType=VARCHAR},
+		#{roleid, mode=IN, jdbcType=INTEGER},
+		#{regtime, mode=IN, jdbcType=TIMESTAMP},
+		#{userstatus, mode=IN, jdbcType=INTEGER},
+		#{activestatus, mode=IN, jdbcType=INTEGER},
+		#{activecode, mode=IN, jdbcType=VARCHAR});
+	</select>
+    <!-- <parameterMap type="com.yao.model.User" id="saveRegUserMap" >
+         <parameter property="username" mode="IN" jdbcType="VARCHAR"/>
+         <parameter property="password" mode="IN" jdbcType="VARCHAR"/>
+         <parameter property="email" mode="IN" jdbcType="VARCHAR"/>
+         <parameter property="phone" mode="IN" jdbcType="VARCHAR"/>
+         <parameter property="roleId" mode="IN" jdbcType="INTEGER"/>
+         <parameter property="regtime" mode="IN" jdbcType="DATE"/>
+         <parameter property="status" mode="IN" jdbcType="INTEGER"/>
+         <parameter property="isEmailVerify" mode="IN" jdbcType="INTEGER"/>
+         <parameter property="activeStatus" mode="IN" jdbcType="INTEGER"/>
+         <parameter property="activeCode" mode="IN" jdbcType="VARCHAR"/>
+         <parameter property="reslutstr" mode="OUT" jdbcType="VARCHAR"/>
+    </parameterMap>  -->
+
+</mapper>

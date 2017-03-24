@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.yao.dao.AlbumDao">
+	<!-- 新增文件信息，并返回刚插入的文件ID -->
+	<insert id="savefile" parameterType="com.yao.model.FileInfo">
+		<selectKey keyProperty="id" resultType="Integer" order="AFTER">
+			SELECT LAST_INSERT_ID()
+		</selectKey>
+		insert into fileinfo (filetype,uploaduser) values
+		(#{filetype},#{uploaduser});
+	</insert>
+	<!-- 根据文件ID更新文件信息 -->
+	<update id="updatefile" parameterType="com.yao.model.FileInfo">
+		update fileinfo set
+		filename=#{filename},uploadtime=#{uploadtime,jdbcType=TIMESTAMP},filepath=#{filepath},albumid=#{albumid},isdefault=#{isdefault} 
+		where id =#{id};
+	</update>
+	<!-- 查询文件信息 -->
+	<select id="selectfile" resultType="com.yao.model.FileInfo">
+		select id,filename,filetype,uploadtime,uploaduser,filepath,albumid,isdefault from fileinfo;
+	</select>
+	<!-- 根据相册ID，查询图片文件信息 -->
+	<select id="selectfilebyalbumid" parameterType="integer" resultType="com.yao.model.FileInfo">
+		select id,filename,filetype,uploadtime,uploaduser,filepath,albumid,isdefault from fileinfo where albumid=#{albumid};
+	</select>
+	<!-- 查询相册集photoalbum表中的数据 -->
+	<select id="selectphotoalbum" resultType="com.yao.model.PhotoAlbum">
+		select id,albumname,albumpath,albumtime,param1 from photoalbum;
+	</select>
+	<!-- 插入相册photoalbum的名字，并返回对应ID -->
+	<insert id="insertalbum" parameterType="com.yao.model.PhotoAlbum" useGeneratedKeys="true" keyProperty="id">
+		insert into photoalbum (albumname,albumpath,albumtime,param1) values
+		(#{albumname},#{albumpath},#{albumtime,jdbcType=TIMESTAMP},#{param1});
+	</insert>
+	<!-- 更新相册信息photoalbum表 -->
+	<update id="updatealbum" parameterType="com.yao.model.PhotoAlbum">
+		update photoalbum set	albumpath=#{albumpath}	where id =#{id};
+	</update>
+	<!-- 根据ID，查询相册集photoalbum表中的数据 -->
+	<select id="selectphotoalbumbyid" parameterType="integer" resultType="com.yao.model.PhotoAlbum">
+		select id,albumname,albumpath,albumtime,param1 from photoalbum where id=#{id};
+	</select>
+	<!-- 根据ID，查询相册集photoalbum表中的数据 -->
+	<select id="selectphotoalbumbyname" parameterType="string" resultType="com.yao.model.PhotoAlbum">
+		select id,albumname,albumpath,albumtime,param1 from photoalbum where albumname=#{albumname};
+	</select>
+</mapper>

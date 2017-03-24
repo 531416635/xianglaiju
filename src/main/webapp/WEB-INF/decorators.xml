@@ -1,0 +1,13 @@
+<decorators defaultdir="/WEB-INF/pages/">
+	<decorator name="webHeader" page="website/webHeader.jsp">
+		<pattern>/web/*</pattern>
+	</decorator>
+	<decorator name="adminHeader" page="adminsite/adminHeader.jsp">
+		<pattern>/admin/*</pattern>
+	</decorator>
+	<excludes>
+		<pattern>*.do*</pattern>
+		<!-- <pattern>/web/toSaveArguments.do*</pattern> -->
+	</excludes>
+</decorators> 
+
