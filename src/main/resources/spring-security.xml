@@ -24,6 +24,7 @@
 	<http pattern="/web/index.html" security="none" />
 	<http pattern="/web/sendRegisterMsg.*" security="none" />
 	<http pattern="/web/register.*" security="none" />
+	<http pattern="/wechat/**" security="none" />
 	<http pattern="/login_failure.jsp" security="none" />
 	<http pattern="/index.jsp" security="none" />
 
