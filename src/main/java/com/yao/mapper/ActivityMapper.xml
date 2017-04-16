@@ -1,0 +1,188 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.yao.dao.ActivityDao">
+  <resultMap id="BaseResultMap" type="com.yao.model.ActivityModel">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="activity_name" jdbcType="VARCHAR" property="activityName" />
+    <result column="activity_time" jdbcType="DATE" property="activityTime" />
+    <result column="user_id" jdbcType="INTEGER" property="userId" />
+    <result column="is_index" jdbcType="INTEGER" property="isIndex" />
+    <result column="createtime" jdbcType="DATE" property="createtime" />
+    <result column="createuserid" jdbcType="VARCHAR" property="createuserid" />
+    <result column="demo" jdbcType="VARCHAR" property="demo" />
+    <result column="param" jdbcType="VARCHAR" property="param" />
+  </resultMap>
+  <resultMap extends="BaseResultMap" id="ResultMapWithBLOBs" type="com.yao.model.ActivityModel">
+    <result column="activity_content" jdbcType="LONGVARCHAR" property="activityContent" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, activity_name, activity_time, user_id, is_index, createtime, createuserid, demo, 
+    param
+  </sql>
+  <sql id="Blob_Column_List">
+    activity_content
+  </sql>
+  <select id="selectList"  parameterType="java.util.Map" resultMap="ResultMapWithBLOBs">
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from activity order by createtime desc 
+    <if test="pageVO != null">
+        <if test="pageVO.endPage != null and pageVO.startPage != null">
+        limit #{pageVO.startPage,jdbcType=INTEGER},#{pageVO.endPage,jdbcType=INTEGER}
+        </if>
+    </if>
+  </select>
+  
+  <select id="selectCount"  parameterType="java.util.Map" resultType="java.lang.Integer">
+    select count(*) from activity
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="ResultMapWithBLOBs">
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from activity
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from activity
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.yao.model.ActivityModel">
+    insert into activity (id, activity_name, activity_time, 
+      user_id, is_index, createtime, 
+      createuserid, demo, param, 
+      activity_content)
+    values (#{id,jdbcType=INTEGER}, #{activityName,jdbcType=VARCHAR}, #{activityTime,jdbcType=DATE}, 
+      #{userId,jdbcType=INTEGER}, #{isIndex,jdbcType=INTEGER}, #{createtime,jdbcType=DATE}, 
+      #{createuserid,jdbcType=VARCHAR}, #{demo,jdbcType=VARCHAR}, #{param,jdbcType=VARCHAR}, 
+      #{activityContent,jdbcType=LONGVARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.yao.model.ActivityModel">
+    insert into activity
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="activityName != null">
+        activity_name,
+      </if>
+      <if test="activityTime != null">
+        activity_time,
+      </if>
+      <if test="userId != null">
+        user_id,
+      </if>
+      <if test="isIndex != null">
+        is_index,
+      </if>
+      <if test="createtime != null">
+        createtime,
+      </if>
+      <if test="createuserid != null">
+        createuserid,
+      </if>
+      <if test="demo != null">
+        demo,
+      </if>
+      <if test="param != null">
+        param,
+      </if>
+      <if test="activityContent != null">
+        activity_content,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="activityName != null">
+        #{activityName,jdbcType=VARCHAR},
+      </if>
+      <if test="activityTime != null">
+        #{activityTime,jdbcType=DATE},
+      </if>
+      <if test="userId != null">
+        #{userId,jdbcType=INTEGER},
+      </if>
+      <if test="isIndex != null">
+        #{isIndex,jdbcType=INTEGER},
+      </if>
+      <if test="createtime != null">
+        #{createtime,jdbcType=DATE},
+      </if>
+      <if test="createuserid != null">
+        #{createuserid,jdbcType=VARCHAR},
+      </if>
+      <if test="demo != null">
+        #{demo,jdbcType=VARCHAR},
+      </if>
+      <if test="param != null">
+        #{param,jdbcType=VARCHAR},
+      </if>
+      <if test="activityContent != null">
+        #{activityContent,jdbcType=LONGVARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.yao.model.ActivityModel">
+    update activity
+    <set>
+      <if test="activityName != null">
+        activity_name = #{activityName,jdbcType=VARCHAR},
+      </if>
+      <if test="activityTime != null">
+        activity_time = #{activityTime,jdbcType=DATE},
+      </if>
+      <if test="userId != null">
+        user_id = #{userId,jdbcType=INTEGER},
+      </if>
+      <if test="isIndex != null">
+        is_index = #{isIndex,jdbcType=INTEGER},
+      </if>
+      <if test="createtime != null">
+        createtime = #{createtime,jdbcType=DATE},
+      </if>
+      <if test="createuserid != null">
+        createuserid = #{createuserid,jdbcType=VARCHAR},
+      </if>
+      <if test="demo != null">
+        demo = #{demo,jdbcType=VARCHAR},
+      </if>
+      <if test="param != null">
+        param = #{param,jdbcType=VARCHAR},
+      </if>
+      <if test="activityContent != null">
+        activity_content = #{activityContent,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.yao.model.ActivityModel">
+    update activity
+    set activity_name = #{activityName,jdbcType=VARCHAR},
+      activity_time = #{activityTime,jdbcType=DATE},
+      user_id = #{userId,jdbcType=INTEGER},
+      is_index = #{isIndex,jdbcType=INTEGER},
+      createtime = #{createtime,jdbcType=DATE},
+      createuserid = #{createuserid,jdbcType=VARCHAR},
+      demo = #{demo,jdbcType=VARCHAR},
+      param = #{param,jdbcType=VARCHAR},
+      activity_content = #{activityContent,jdbcType=LONGVARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.yao.model.ActivityModel">
+    update activity
+    set activity_name = #{activityName,jdbcType=VARCHAR},
+      activity_time = #{activityTime,jdbcType=DATE},
+      user_id = #{userId,jdbcType=INTEGER},
+      is_index = #{isIndex,jdbcType=INTEGER},
+      createtime = #{createtime,jdbcType=DATE},
+      createuserid = #{createuserid,jdbcType=VARCHAR},
+      demo = #{demo,jdbcType=VARCHAR},
+      param = #{param,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

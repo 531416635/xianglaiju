@@ -19,9 +19,11 @@
 <link rel="stylesheet" href="<%=path%>/css/plugin/icon.css" />
 <script src="<%=path%>/js/plugin/jquery.min.js"></script>
 <script src="<%=path%>/js/plugin/jquery.easyui.min.js"></script>
+<script src="<%=path%>/js/plugin/jquery.form.js"></script>
 <script src="<%=path%>/js/plugin/easyui-lang-zh_CN.js"></script>
 <script src="<%=path%>/js/plugin/datagrid-detailview.js"></script>
 <script src="<%=path%>/js/plugin/dateFormat.js"></script>
+<script src="<%=path%>/js/admin/index.js"></script>
 <!-- head装饰页面 -->
 <decorator:head />
 </head>

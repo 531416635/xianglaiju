@@ -51,3 +51,17 @@ $('#rolemanager').click(function() {
 		});
 	}
 });
+
+$('#activitymanager').click(function() {
+	var title = '活动管理';
+	if ($('#tt').tabs('exists', title)) {
+		$('#tt').tabs('select', title);
+	} else {
+		$('#tt').tabs('add', {
+			title : title,
+			selected : true,
+			content : '<iframe id="B" frameborder="0" src="activity/activityManager.html" style="width: 100%; height: 100%;"></iframe>',
+			closable : true
+		});
+	}
+});

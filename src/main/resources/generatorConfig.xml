@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?>  
+<!DOCTYPE generatorConfiguration  
+  PUBLIC "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN"  
+  "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd">
+<generatorConfiguration>
+	<!-- 数据库驱动 -->
+	<classPathEntry
+		location="D:\Esystem\program\repository\mysql\mysql-connector-java\5.1.38\mysql-connector-java-5.1.38.jar" />
+	<context id="DB2Tables" targetRuntime="MyBatis3">
+		<!-- 注释 -->
+		<commentGenerator>
+			<!-- 是否取消注释 -->
+			<property name="suppressDate" value="false" />
+			<!-- 是否去除自动生成的注释 true：是 ： false:否 -->
+			<property name="suppressAllComments" value="true" />
+		</commentGenerator>
+		<!--数据库链接URL，用户名、密码 -->
+		<jdbcConnection driverClass="com.mysql.jdbc.Driver"
+			connectionURL="jdbc:mysql://localhost:3306/ourdemotest" userId="root"
+			password="12345">
+		</jdbcConnection>
+		<!-- 类型转换 -->
+		<javaTypeResolver>
+			<!-- 是否使用bigDecimal， false可自动转化以下类型（Long, Integer, Short, etc.） -->
+			<property name="forceBigDecimals" value="false" />
+		</javaTypeResolver>
+		<!-- 生成实体类的包名和位置 -->
+		<javaModelGenerator targetPackage="com.yao.model"
+			targetProject="src\main\java">
+			<property name="enableSubPackages" value="true" />
+			<property name="trimStrings" value="true" />
+		</javaModelGenerator>
+		<!-- 生成xml映射文件的包名和位置 -->
+		<sqlMapGenerator targetPackage="com.yao.mapper"
+			targetProject="src\main\java">
+			<property name="enableSubPackages" value="true" />
+		</sqlMapGenerator>
+		<!-- 生成DAO的包名和位置 type="XMLMAPPER" -->
+		<javaClientGenerator type="XMLMAPPER"
+			targetPackage="com.yao.dao" targetProject="src\main\java">
+			<property name="enableSubPackages" value="true" />
+		</javaClientGenerator>
+		<!-- 要生成的表 tableName是数据库中的表名或视图名 domainObjectName是实体类名 -->
+		<table tableName="activity" domainObjectName="Activity"
+			enableCountByExample="false" enableUpdateByExample="false"
+			enableDeleteByExample="false" enableSelectByExample="false"
+			selectByExampleQueryId="false"></table>
+
+		<!-- <table tableName="article" domainObjectName="Article"
+			enableCountByExample="true" enableUpdateByExample="true"
+			enableDeleteByExample="true" enableSelectByExample="true"
+			selectByExampleQueryId="true"></table>
+
+		<table tableName="category" domainObjectName="Category"
+			enableCountByExample="true" enableUpdateByExample="true"
+			enableDeleteByExample="true" enableSelectByExample="true"
+			selectByExampleQueryId="true"></table>
+
+		<table tableName="comment" domainObjectName="Comment"
+			enableCountByExample="true" enableUpdateByExample="true"
+			enableDeleteByExample="true" enableSelectByExample="true"
+			selectByExampleQueryId="true"></table> -->
+
+		<!-- <table tableName="menu" domainObjectName="Menu"
+			enableCountByExample="true" enableUpdateByExample="true"
+			enableDeleteByExample="true" enableSelectByExample="true"
+			selectByExampleQueryId="true"></table>
+
+		<table tableName="rolemenu" domainObjectName="RoleMenu"
+			enableCountByExample="true" enableUpdateByExample="true"
+			enableDeleteByExample="true" enableSelectByExample="true"
+			selectByExampleQueryId="true"></table>
+
+		<table tableName="roles" domainObjectName="Roles"
+			enableCountByExample="true" enableUpdateByExample="true"
+			enableDeleteByExample="true" enableSelectByExample="true"
+			selectByExampleQueryId="true"></table> -->
+	</context>
+</generatorConfiguration>  

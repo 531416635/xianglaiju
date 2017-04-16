@@ -27,6 +27,9 @@
 	<http pattern="/wechat/**" security="none" />
 	<http pattern="/login_failure.jsp" security="none" />
 	<http pattern="/index.jsp" security="none" />
+	
+	<http pattern="/activity/*" security="none" />
+
 
 	<http entry-point-ref="loginEntryPoint" use-expressions="true">
 		<intercept-url pattern="*/login.html*" access="IS_AUTHENTICATED_ANONYMOUSLY"/>
