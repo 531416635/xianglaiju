@@ -4,12 +4,13 @@ import java.util.List;
 import java.util.Map;
 
 import com.yao.model.ActivityModel;
+import com.yao.model.PictureModel;
 
 public interface ActivityService {
 
 	int deleteByPrimaryKey(Integer id);
 
-	int insert(ActivityModel record);
+	int insert(ActivityModel record, List<PictureModel> pictureList);
 
 	int insertSelective(ActivityModel record);
 

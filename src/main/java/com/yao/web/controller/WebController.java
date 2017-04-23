@@ -28,6 +28,11 @@ public class WebController {
 		return "website/index";
 	}
 	
+	@RequestMapping(value = "/indextest")
+	public String indextest() {
+		logger.info("跳转到首页");
+		return "website/indextest";
+	}
 	@RequestMapping(value="/login")
 	public String login(){
 		logger.info("跳转到首页");

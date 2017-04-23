@@ -1,14 +1,16 @@
 package com.yao.service.impl;
 
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.util.CollectionUtils;
 
 import com.yao.dao.ActivityDao;
+import com.yao.dao.PictureDao;
 import com.yao.model.ActivityModel;
+import com.yao.model.PictureModel;
 import com.yao.service.ActivityService;
 
 @Service
@@ -17,6 +19,9 @@ public class ActivityServiceImpl implements ActivityService{
 	@Autowired
 	private ActivityDao dao;
 	
+	@Autowired
+	private PictureDao pictureDao;
+	
 	@Override
 	public int deleteByPrimaryKey(Integer id) {
 		// TODO Auto-generated method stub
@@ -24,8 +29,11 @@ public class ActivityServiceImpl implements ActivityService{
 	}
 
 	@Override
-	public int insert(ActivityModel record) {
+	public int insert(ActivityModel record, List<PictureModel> pictureList) {
 		// TODO Auto-generated method stub
+		if(!CollectionUtils.isEmpty(pictureList)&&pictureList.size()>0){
+			pictureDao.insertList(pictureList);
+		}
 		return dao.insert(record);
 	}
 

@@ -17,6 +17,7 @@
 	
 	<!-- 权限控制的规则 -->
 	<http pattern="/css/**" security="none" />
+	<http pattern="/pictures/**" security="none" />
 	<http pattern="/fonts/**" security="none" />
 	<http pattern="/img/**" security="none" />
 	<http pattern="/admin/login.html" security="none" />
